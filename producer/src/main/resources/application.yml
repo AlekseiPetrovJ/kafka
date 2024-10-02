@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: "dev"
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  application:
+    name: producer
+  kafka:
+    bootstrap-servers:
+      #      - kafka:9092
+      - localhost:9092
+    producer:
+      keySerializer: org.springframework.kafka.support.serializer.JsonSerializer
+      valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
+server:
+  port: 8080
+springdoc:
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+kafka-producer:
+  topic: metrics-topic
+
+
