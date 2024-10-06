@@ -1,5 +1,6 @@
-package ru.petrov.controller;
+package ru.petrov.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class MetricProducerController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<String> createMessage(@RequestBody MetricDto metricDto) {
+    public ResponseEntity<String> createMessage(@RequestBody @Valid MetricDto metricDto) {
         try {
             CompletableFuture<SendResult<String, MetricDto>> future = messagingService
                     .send(props.getTopic(), metricDto);
