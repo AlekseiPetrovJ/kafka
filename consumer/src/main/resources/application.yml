@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: "dev"
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  application:
+    name: consumer
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    #          ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  datasource:
+    driver: org.postgresql.Driver
+    #    url: jdbc:postgresql://postgres:5432/aop
+    url: jdbc:postgresql://localhost:5433/metric
+    username: metric
+    password: metric
+  liquibase:
+    enabled: true
+    change-log: classpath:/changelog/changelog.xml
+  kafka:
+    bootstrap-servers:
+#      - kafka:9092
+      - localhost:9092
+    consumer:
+      group-id: consumer
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+server:
+  port: 8081

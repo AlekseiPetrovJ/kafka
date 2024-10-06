@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        logicalFilePath="changelog/changelog.xml">
+
+
+    <changeSet id="1728213582203-1" author="Aleksei Petrov">
+        <createSequence incrementBy="50" sequenceName="metric_seq" startValue="10000"/>
+    </changeSet>
+
+    <changeSet id="1728213582203-2" author="Aleksei Petrov">
+        <createTable tableName="metric">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_metric"/>
+            </column>
+            <column name="local_date_time"
+                    type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="base_unit" type="VARCHAR(255)"/>
+            <column name="measurement" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
