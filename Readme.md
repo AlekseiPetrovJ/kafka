@@ -1,3 +1,5 @@
+[![kafka app with Maven](https://github.com/AlekseiPetrovJ/kafka/actions/workflows/maven.yml/badge.svg)](https://github.com/AlekseiPetrovJ/kafka/actions/workflows/maven.yml)
+
 # Spring Boot приложение системы мониторинга с использованием Spring Kafka
 
 Система мониторинга состоит из двух модулей: 
@@ -7,6 +9,13 @@
 ![Архитектура системы](architecture.png)
 
 [Полный текст технического задания](OpenSchoolDz3.txt)
+
+### Моделирование работы приложения
+
+Зарегистрируйте значение метрики через POST метод в микросервисе Producer.
+Метрика будет передана через Kafka в микросервис Consumer, где будет записано в базу данных Postgresql. Посмотреть
+значение метрик можно в МС Consumer.
+База данных поставляется с демонстрационными значениями метрик, которые вносятся посредством Liquibase.
 
 ## API
 
@@ -30,38 +39,26 @@ GET /metrics/{id}: Получение конкретной метрики по �
 1) Скачайте проект из ветки master
 
 2) Сборка приложения, установка в локальный maven репозиторий
-   1) Перейдите в каталог модуля producer
+   - Перейдите в каталог модуля **Producer**. Соберите докер образ:
 
-    ```bash
-    cd .\producer\
-    ```
-
-    2) Соберите докер образ:
-    
    windows:
     ```bash
-    ./mvnw.cmd -B clean package dockerfile:build
+    cd .\producer\ ; ./mvnw.cmd -B clean package dockerfile:build
     ```
     linux:
     ```bash
-    ./mvnw -B clean package dockerfile:build
+    cd .\producer\ && ./mvnw -B clean package dockerfile:build
     ```
-   3) Перейдите в каталог модуля consumer
-
-    ```bash
-    cd ..\consumer\
-    ```
-
-   4) Соберите докер образ:
+   - Перейдите в каталог модуля **Consumer**. Соберите докер образ:
 
     windows:
     ```bash
-    ./mvnw.cmd -B clean package dockerfile:build
+    cd ..\consumer\ ; ./mvnw.cmd -B clean package dockerfile:build
     ```
     
     linux:
     ```bash
-    ./mvnw -B clean package dockerfile:build
+     cd ..\consumer\ && ./mvnw -B clean package dockerfile:build
     ```
 
 3) Запуск проекта:
@@ -83,5 +80,7 @@ docker compose up
 
 После запуска демо-приложения становится доступным OpenApi:
 
-http://localhost:8081/swagger-ui/index.htm - consumer
-http://localhost:8080/swagger-ui/index.htm - producer
+http://localhost:8081/swagger-ui/index.html - **Consumer**
+
+http://localhost:8080/swagger-ui/index.html - **Producer**
+
