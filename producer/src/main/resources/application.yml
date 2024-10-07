@@ -10,8 +10,7 @@ spring:
     name: producer
   kafka:
     bootstrap-servers:
-      #      - kafka:9092
-      - localhost:9092
+      - kafka:9092
     producer:
       keySerializer: org.springframework.kafka.support.serializer.JsonSerializer
       valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
