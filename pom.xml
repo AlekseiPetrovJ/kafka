@@ -21,8 +21,12 @@
 	</modules>
 
 	<properties>
-		<java.version>21</java.version>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 		<springdoc.version>2.5.0</springdoc.version>
+        <docker.image.prefix>petrov</docker.image.prefix>
+        <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
 	</properties>
 
 	<dependencies>

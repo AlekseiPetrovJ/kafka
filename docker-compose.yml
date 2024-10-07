@@ -3,9 +3,9 @@ services:
   postgres:
     image: postgres:15.5
     environment:
-      POSTGRES_DB: "metrics"
-      POSTGRES_USER: "metrics"
-      POSTGRES_PASSWORD: "metrics"
+      POSTGRES_DB: "metric"
+      POSTGRES_USER: "metric"
+      POSTGRES_PASSWORD: "metric"
       PGDATA: "/var/lib/postgresql/data/pgdata"
   zookeeper:
     image: 'bitnami/zookeeper:latest'
@@ -22,19 +22,19 @@ services:
     depends_on:
       zookeeper:
           condition: service_started
-#  producer:
-#    image: petrov/producer:0.0.1-SNAPSHOT
-#    ports:
-#      - '8080:8080'
-#    depends_on:
-#      kafka:
-#        condition: service_started
-#  consumer:
-#    image: petrov/consumer:0.0.1-SNAPSHOT
-#    ports:
-#      - '8081:8080'
-#    depends_on:
-#      postgres:
-#        condition: service_started
-#      kafka:
-#        condition: service_started
+  producer:
+    image: petrov/producer:0.0.1-SNAPSHOT
+    ports:
+      - '8080:8080'
+    depends_on:
+      kafka:
+        condition: service_started
+  consumer:
+    image: petrov/consumer:0.0.1-SNAPSHOT
+    ports:
+      - '8081:8080'
+    depends_on:
+      postgres:
+        condition: service_started
+      kafka:
+        condition: service_started
