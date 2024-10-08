@@ -13,9 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MetricDto {
-//    @NotNull
-//    @Schema(description = "Id замера")
-//    private Long id;
     @NotNull
     @Schema(description = "Дата и время")
     private LocalDateTime localDateTime;
