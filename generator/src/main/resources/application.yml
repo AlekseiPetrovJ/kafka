@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: "dev"
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  application:
+    name: generator
+generator:
+  producerUrl: http://localhost:8080/metrics
+server:
+  port: 8083
+scheduler:
+  fixedRate: 5000
