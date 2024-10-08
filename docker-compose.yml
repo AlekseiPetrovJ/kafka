@@ -38,3 +38,8 @@ services:
         condition: service_started
       kafka:
         condition: service_started
+  generator:
+    image: petrov/generator:0.0.1-SNAPSHOT
+    depends_on:
+      producer:
+        condition: service_started

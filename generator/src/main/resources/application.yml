@@ -9,8 +9,8 @@ spring:
   application:
     name: generator
 generator:
-  producerUrl: http://localhost:8080/metrics
+  producerUrl: http://producer:8080/metrics
 server:
-  port: 8083
+  port: 8080
 scheduler:
   fixedRate: 5000
